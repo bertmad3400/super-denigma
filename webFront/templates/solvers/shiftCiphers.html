@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %} Shift Ciphers {% endblock %}
+
+{% block head %} 
+{% endblock %}
+
+{% block body %}
+
+	<form action="" method="POST">
+		<input type="checkbox" name="wholeAlfabetRange" value="True">
+		<input type="number" name="shiftCount" value="3" min="1" max="1000">
+		<input type="text" name="alfabet" value="abcdefghijklmnopqrstuvwxyzæøå">
+		<textarea placeholder="Insert cipher text here" id="textbox" name="cipherText"></textarea>
+		<input type="submit" name="solve" value="Solve" class="button">
+	</form>
+
+{% endblock %}
