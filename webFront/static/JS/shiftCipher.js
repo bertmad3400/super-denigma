@@ -9,3 +9,14 @@ checkbox.addEventListener('change', function() {
 		numberInput.disabled = ""
   }
 });
+
+function addAlphabetField() {
+    // Create an input element for another alphabet
+    var alphabetField = document.createElement("input");
+    alphabetField.setAttribute("text", "text");
+    alphabetField.setAttribute("name", "alfabet");
+    alphabetField.setAttribute("placeholder", "abc...");
+
+    // Finally put it where it is supposed to appear.
+	document.getElementById("inputOptions").appendChild(alphabetField);
+}
