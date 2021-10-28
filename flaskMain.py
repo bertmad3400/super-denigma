@@ -33,16 +33,16 @@ def solveShiftCiphers():
             except:
                 abort(422)
 
-        requestDetails["alfabets"] = request.form.getlist("alfabet")
+        requestDetails["alphabets"] = request.form.getlist("alphabet")
 
-        if requestDetails["alfabets"] == []:
+        if requestDetails["alphabets"] == []:
             abort(422)
 
         if requestDetails["wholeAlfabetRange"]:
-            solutions = [shift.shiftText(shiftCount, requestDetails["cipherText"], requestDetails["alfabets"][0]) for shiftCount in range(len(requestDetails["alfabets"][0]))]
+            solutions = [shift.shiftText(shiftCount, requestDetails["cipherText"], requestDetails["alphabets"][0]) for shiftCount in range(len(requestDetails["alphabets"][0]))]
             return render_template("solvers/shiftCiphers.html", solutions=solutions)
         else:
-            solution = shift.shiftText(requestDetails["shiftCount"], requestDetails["cipherText"], requestDetails["alfabets"])
+            solution = shift.shiftText(requestDetails["shiftCount"], requestDetails["cipherText"], requestDetails["alphabets"])
             return render_template("solvers/shiftCiphers.html", solution=solution)
 
 
