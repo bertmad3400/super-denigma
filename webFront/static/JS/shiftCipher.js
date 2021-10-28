@@ -13,7 +13,7 @@ checkbox.addEventListener('change', function() {
 function addAlphabetField() {
     // Create an input element for another alphabet
     var alphabetField = document.createElement("input");
-    alphabetField.setAttribute("text", "text");
+    alphabetField.setAttribute("type", "text");
     alphabetField.setAttribute("name", "alfabet");
     alphabetField.setAttribute("placeholder", "abc...");
 
