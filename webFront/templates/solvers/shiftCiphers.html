@@ -11,14 +11,17 @@
 	<div class="boxedArea" id="inputArea">
 		<form action="" method="POST" id="inputForm">
 			<label for="shiftCount">The number of times to shift the cipher text (check box for looping through whole alphabet).</label>
+			<br>
 			<input type="number" name="shiftCount" value="3" min="1" max="1000">
 			<input type="checkbox" name="wholeAlfabetRange" value="True">
 			<br>
 			<label for="alfabet">The alphabet to loop through (button for adding more).</label>
+			<br>
 			<input type="text" name="alfabet" value="abcdefghijklmnopqrstuvwxyzæøå">
 			<input type="button" value="+" onclick="addAlphabetField();">
 			<br>
 			<label for="alfabet">The cipher text to decode.</label>
+			<br>
 			<textarea placeholder="Insert cipher text here" id="textbox" name="cipherText"></textarea>
 			<br>
 			<input type="submit" name="solve" value="Solve" class="button">
