@@ -21,6 +21,7 @@
 		</form>
 	</div>
 
+	{% if solution or solutions %}
 	<div class="boxedArea" id="solutionField">
 		{% if solutions %}
 			<table>
@@ -39,8 +40,9 @@
 			</table>
 		{% endif %}
 
-		{{ solution }}
+		<h1> {{ solution }} </h1>
 	</div>
+	{% endif %}
 
 <script src="{{ url_for('static', filename='JS/shiftCipher.js') }}"></script>
 
