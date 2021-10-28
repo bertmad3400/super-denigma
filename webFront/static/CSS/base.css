@@ -44,6 +44,11 @@ body {
 	width: 97%;
 }
 
+#inputArea input[type=submit] {
+	width: 8vh;
+	height: 4vh;
+}
+
 #inputArea label {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
