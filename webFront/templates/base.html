@@ -9,7 +9,20 @@
 		{% endblock %}
 	</head>
 	<body>
+		<select onchange="navigateTo(this.value)">
+
+			<option disabled selected>Select cipher</option>
+			{% for endpoint in endpoints %}
+			<option value="{{ endpoint[0] }}">{{ endpoint[1] }}
+			{% endfor %}
+
+		</select>
+
+		</select>
 		{% block body %}
 		{% endblock %}
+		<script>
+			function navigateTo(src) { window.location = src; }
+		</script>
 	</body>
 </html>
