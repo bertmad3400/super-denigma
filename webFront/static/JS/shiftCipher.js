@@ -18,5 +18,11 @@ function addAlphabetField() {
     alphabetField.setAttribute("placeholder", "abc...");
 
     // Finally put it where it is supposed to appear.
-	document.getElementById("inputOptions").appendChild(alphabetField);
+	var referenceNode = document.querySelectorAll('input[name=alfabet]');
+	referenceNode = referenceNode[referenceNode.length - 1];
+	referenceNode.parentNode.insertBefore(alphabetField, referenceNode.nextSibling);
+
+	//Also insert linebreak
+	var lineBreak = document.createElement("br");
+	referenceNode.parentNode.insertBefore(lineBreak, referenceNode.nextSibling);
 }
