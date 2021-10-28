@@ -1,0 +1,54 @@
+body {
+	background-color: #f2f2f2;
+}
+
+.boxedArea {
+	display:flex;
+
+	justify-content: center;
+    align-items: center;
+
+	border: 2px solid #999999;
+	background-color: #ffffff;
+    box-shadow: 0 0 15px 0 #3263cd; 
+
+	width: 90vw;
+	margin: 20px auto;
+	padding: 20px;
+}
+
+#inputArea form {
+    width: 100%;
+}
+
+#inputArea input, select, textarea {
+    margin-bottom: 20px;
+	height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#inputArea input[type=button], input[type=checkbox]{
+	margin-top: 1vh;
+	width: 30px;
+}
+
+#inputArea input[type=number], input[type=text], textarea {
+    width: calc(100% - 70px);
+    padding: 5px;
+}
+
+#inputArea textarea {
+	height: 30vh;
+}
+
+#inputArea label {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+
+#solutionField h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+}
