@@ -36,7 +36,26 @@ def injectSiteMap():
 def handleHTTPErrors(e):
     return render_template("HTTPError.html", errorCode=e.code, errorName=e.name, errorDescription=e.description), e.code
 
-@app.route("/", methods = ['POST', 'GET'])
+@app.route("/phoneCode", methods = ['POST', 'GET'])
+def solvePhoneCode():
+    if request.method == "GET":
+        return render_template("solvers/phoneCode.html")
+    elif request.method == "POST":
+
+        seperator = request.form.get("seperator", " ")
+        cipherText = request.form.get("cipherText")
+        repeats = bool(request.form.get("repeats", False))
+
+        if seperator == "":
+            seperator = " "
+
+        solution = phone.solvePhoneCode(cipherText, repeats, seperator=seperator)
+
+        return render_template("solvers/phoneCode.html", solution=solution)
+
+
+
+@app.route("/shiftCiphers", methods = ['POST', 'GET'])
 def solveShiftCiphers():
     if request.method == 'GET':
         return render_template("solvers/shiftCiphers.html")
