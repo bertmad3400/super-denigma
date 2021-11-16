@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "solverBase.html" %}
 
 {% block title %} Shift Ciphers {% endblock %}
 
@@ -6,51 +6,42 @@
 	<link href="{{ url_for('static', filename='CSS/tables.css') }}" rel="stylesheet">
 {% endblock %}
 
-{% block body %}
+{% block inputArea %}
+	<label for="shiftCount">The number of times to shift the cipher text (check box for looping through whole alphabet).</label>
+	<br>
+	<input type="number" name="shiftCount" value="3" min="-1000" max="1000">
+	<input type="checkbox" name="wholeAlfabetRange" value="True">
+	<br>
+	<label for="alphabet">The alphabet to loop through (button for adding more).</label>
+	<br>
+	<input type="text" name="alphabet" value="abcdefghijklmnopqrstuvwxyzæøå">
+	<input type="button" value="+" onclick="addAlphabetField();">
+	<br>
+	<label for="alphabet">The cipher text to decode.</label>
+	<br>
+	<textarea placeholder="Insert cipher text here" id="textbox" name="cipherText"></textarea>
+	<br>
+	<input type="submit" name="solve" value="Solve" class="button">
+	<script src="{{ url_for('static', filename='JS/shiftCipher.js') }}"></script>
+{% endblock %}
 
-	<div class="boxedArea" id="inputArea">
-		<form action="" method="POST" id="inputForm">
-			<label for="shiftCount">The number of times to shift the cipher text (check box for looping through whole alphabet).</label>
-			<br>
-			<input type="number" name="shiftCount" value="3" min="-1000" max="1000">
-			<input type="checkbox" name="wholeAlfabetRange" value="True">
-			<br>
-			<label for="alphabet">The alphabet to loop through (button for adding more).</label>
-			<br>
-			<input type="text" name="alphabet" value="abcdefghijklmnopqrstuvwxyzæøå">
-			<input type="button" value="+" onclick="addAlphabetField();">
-			<br>
-			<label for="alphabet">The cipher text to decode.</label>
-			<br>
-			<textarea placeholder="Insert cipher text here" id="textbox" name="cipherText"></textarea>
-			<br>
-			<input type="submit" name="solve" value="Solve" class="button">
-		</form>
-	</div>
+{% block solutionArea %}
+	{% if solutions %}
+		<table>
+			<tr>
+				<th>Shift Count</th>
+				<th>Solution</th>
 
-	{% if solution or solutions %}
-	<div class="boxedArea" id="solutionField">
-		{% if solutions %}
-			<table>
+			</tr>
+
+			{% for solution in solutions %}
 				<tr>
-					<th>Shift Count</th>
-					<th>Solution</th>
-
+					<td> {{loop.index - 1 }}
+					<td>{{ solution }}</td>
 				</tr>
-
-				{% for solution in solutions %}
-					<tr>
-						<td> {{loop.index - 1 }}
-						<td>{{ solution }}</td>
-					</tr>
-				{% endfor %}
-			</table>
-		{% endif %}
-
-		<h1> {{ solution }} </h1>
-	</div>
+			{% endfor %}
+		</table>
 	{% endif %}
 
-<script src="{{ url_for('static', filename='JS/shiftCipher.js') }}"></script>
-
+	<h1> {{ solution }} </h1>
 {% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+	<div class="boxedArea" id="inputArea">
+		<form action="" method="POST" id="inputForm">
+			{% block inputArea %}
+			{% endblock %}
+		</form>
+	</div>
+
+	{% if solution or solutions %}
+		<div class="boxedArea" id="solutionField">
+			{% block solutionArea %}
+			{% endblock %}
+		</div>
+	{% endif %}
+
+{% endblock %}
