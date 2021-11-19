@@ -3,7 +3,7 @@
 import re
 
 nonRepeatingNumberPattern = re.compile(r"(?:(?<=\D)|(?<=^))([2-9][1-3]|([79]4))(?=\D|$)")
-repeatingNumberPattern = re.compile(r"(?:(?<=\D)|(?<=^))(?:([2-9])\1{1,2})$|^(?:([79])\2{3})(?:\D|$)")
+repeatingNumberPattern = re.compile(r"(?:(?<=\D)|(?<=^))(?:([2-9])\1{0,2})$|^(?:([79])\2{3})(?:\D|$)")
 
 numberedLetters = [
             "abc",
