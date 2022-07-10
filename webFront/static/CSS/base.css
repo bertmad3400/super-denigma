@@ -2,6 +2,11 @@ body {
 	background-color: #f2f2f2;
 }
 
+h1.page-title {
+	font-family: sans-serif;
+	font-weight: 100;
+}
+
 .boxedArea {
 	display:flex;
 
@@ -12,7 +17,7 @@ body {
 	background-color: #ffffff;
 	transition: box-shadow 0.15s ease-out;
 
-	width: 80vw;
+	width: 50vw;
 	margin: 20px auto;
 	padding: 20px;
 }
