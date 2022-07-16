@@ -20,7 +20,7 @@
 
 </script> 
 
-<SolverBase title="Morse solver">
+<SolverBase>
 	<form id="inputForm" slot="input">
 		<label for="shiftCount">A string used as the value of a dot</label>
 		<input type="text" name="dotType" id="dotType" bind:value="{dotType}">

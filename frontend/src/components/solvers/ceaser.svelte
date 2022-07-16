@@ -20,7 +20,7 @@
 
 </script> 
 
-<SolverBase title="Ceasar Cipher encryption/decryption">
+<SolverBase>
 	<form id="inputForm" slot="input">
 		<label for="shiftCount">The number of times to shift the cipher text (check box for looping through whole alphabet).</label>
 		<br>

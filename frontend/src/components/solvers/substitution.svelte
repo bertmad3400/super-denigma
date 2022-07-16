@@ -22,7 +22,7 @@
 
 </script> 
 
-<SolverBase title="Mono-alphabetic substitution-cipher solver">
+<SolverBase>
 	<form id="inputForm" slot="input">
 		<label for="alphabet">The alphabet with substitutions.</label>
 		<br>

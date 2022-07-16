@@ -1,11 +1,5 @@
 <script>
-
-	export let title
 </script>
-
-	<div class="boxedArea">
-		<h1 class="page-title">{ title }</h1>
-	</div>
 
 	<div class="boxedArea" id="inputArea">
 		<slot name="input">
@@ -18,12 +12,7 @@
 	</div>
 
 <style lang="scss">
-h1.page-title {
-	font-family: sans-serif;
-	font-weight: 100;
-}
-
-.boxedArea {
+:global(.boxedArea) {
 	display:flex;
 
 	justify-content: center;
@@ -33,14 +22,15 @@ h1.page-title {
 	background-color: #ffffff;
 	transition: box-shadow 0.15s ease-out;
 
-	width: 50vw;
+	width: calc(max(50vw, 60ch));
 	margin: 20px auto;
 	padding: 20px;
-}
 
-.boxedArea:hover {
-	box-shadow: 0 0 5px 0 #3263cd;
-	transition: box-shadow 0.15s ease-in;
+	&:hover {
+		box-shadow: 0 0 5px 0 #3263cd;
+		transition: box-shadow 0.15s ease-in;
+	}
+
 }
 
 #inputArea {
