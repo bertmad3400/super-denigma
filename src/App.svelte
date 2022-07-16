@@ -25,8 +25,14 @@
 </main>
 
 <style lang="scss">
-body {
+:global(body) {
 	background-color: #f2f2f2;
+	padding: 0 4vw 0 4vw;
+	min-width: fit-content;
+}
+
+main {
+	min-width: fit-content;
 }
 
 select {
