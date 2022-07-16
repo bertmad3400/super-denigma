@@ -24,9 +24,9 @@ function shiftText(cipherText, shiftCount, alphabet) {
 
 	for (let char of cipherText) {
 
-		if (alphabet.includes(char)) {
-			let lowerChar = char.toLowerCase()
-			let offSet = (alphabet.indexOf(char) + shiftCount) % alphabet.length
+		let lowerChar = char.toLowerCase()
+		if (alphabet.includes(lowerChar)) {
+			let offSet = (alphabet.indexOf(lowerChar) + shiftCount) % alphabet.length
 			let clearChar = alphabet[offSet]
 
 			if(lowerChar === char) {
