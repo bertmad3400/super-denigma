@@ -1,3 +1,70 @@
+export const morseToLetter = {
+	'.-':     'a',
+	'-...':   'b',
+	'-.-.':   'c',
+	'-..':    'd',
+	'.':      'e',
+	'..-.':   'f',
+	'--.':    'g',
+	'....':   'h',
+	'..':     'i',
+	'.---':   'j',
+	'-.-':    'k',
+	'.-..':   'l',
+	'--':     'm',
+	'-.':     'n',
+	'---':    'o',
+	'.--.':   'p',
+	'--.-':   'q',
+	'.-.':    'r',
+	'...':    's',
+	'-':      't',
+	'..-':    'u',
+	'...-':   'v',
+	'.--':    'w',
+	'-..-':   'x',
+	'-.--':   'y',
+	'.-.-':   'æ',
+	'---.':   'ø',
+	'.--.-':  'å',
+	'--..':   'z',
+	'.----':  '1',
+	'..---':  '2',
+	'...--':  '3',
+	'....-':  '4',
+	'.....':  '5',
+	'-....':  '6',
+	'--...':  '7',
+	'---..':  '8',
+	'----.':  '9',
+	'-----':  '0',
+}
+
+export const letterToMorse = Object.fromEntries(Object.entries(morseToLetter).map(([k, v]) => [v, k]))
+letterToMorse[" "] = ""
+
+export function handleMorse(cipherText, alphabet, prevDelim = "/", newDelim = "", notRecognized = false) {
+	let solution = ""
+
+	let cipherPieces = cipherText.split(prevDelim).map(v => v.toLowerCase())
+
+	for (const cipherPiece of cipherPieces) {
+		if (cipherPiece === "") {
+			solution += " "
+		} else if (cipherPiece in alphabet) {
+			solution += alphabet[cipherPiece] + newDelim
+		} else {
+			if (Boolean(notRecognized)) {
+				solution += notRecognized
+			} else {
+				solution += cipherPiece
+			}
+		}
+	}
+
+	return solution
+}
+
 export function substitute(cipherText, substitutionTable) {
 	const result = []
 
