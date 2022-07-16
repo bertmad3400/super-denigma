@@ -25,16 +25,11 @@
 <SolverBase>
 	<form id="inputForm" slot="input">
 		<label for="alphabet">The alphabet with substitutions.</label>
-		<br>
 		<input type="text" name="alphabet" placeholder="abc..." bind:value="{alphabet}">
-		<br>
 		<label for="alphabet">The cipher text to decode.</label>
-		<br>
 		<textarea placeholder="Insert cipher text here" id="textbox" name="cipherText" bind:value={cipherText}></textarea>
-		<br>
-		<br>
+		
 		<h1>Substitution Table</h1>
-		<input type="button" value="Clear" on:click="{clearSubTable}">
 
 		<div id="subTable">
 			{#each alphabet.split("") as letter}
@@ -43,6 +38,8 @@
 				</label>
 			{/each}
 		</div>
+
+		<input type="button" value="Clear" on:click="{clearSubTable}">
 	</form>
 	
 	<svelte:fragment slot="solution">

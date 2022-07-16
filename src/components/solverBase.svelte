@@ -14,6 +14,7 @@
 <style lang="scss">
 :global(.boxedArea) {
 	display:flex;
+	box-sizing: border-box;
 
 	justify-content: center;
 	align-items: center;
@@ -34,42 +35,38 @@
 }
 
 #inputArea {
+	padding: 3rem;
+
 	:global(form) {
 		width: 100%;
 	}
 
 	:global(input), :global(select), :global(textarea) {
 		margin-bottom: 20px;
-		height: 30px;
+		width: 100%;
+
+		padding: 0.6rem;
+
 		border: 1px solid #ccc;
 		border-radius: 3px;
+
+		font-weight: 200;
+		font-size: 0.8rem;
+		font-family: mono;
 	}
 
-	:global(input[type=button]), :global(input[type=checkbox]) {
-		margin-top: 1vh;
-		width: 4vh;
-	}
-
-	:global(input[type=number]), :global(input[type=text]), :global(textarea) {
-		width: calc(100% - 70px);
-		padding: 5px;
-	}
 
 	:global(textarea) {
 		min-height: 300px;
 		height: 4vh;
-		width: 97%;
-
-	}
-
-	:global(input[type=submit]) {
-		width: 8vh;
-		height: 4vh;
 	}
 
 	:global(label) {
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 14px;
+		font-weight: 300;
+		font-size: 1.2rem;
+		font-family: sans;
+
+		margin-bottom: 1rem;
 	}
 
 	$height: 2ex;
@@ -95,10 +92,6 @@
 	}
 
 	:global(label.switch) {
-		font-weight: 100;
-		font-size: 0.8125rem;
-		font-family: sans;
-
 		position: relative;
 		display: inline-block;
 
@@ -107,7 +100,7 @@
 		line-height: calc(#{$height} + (#{$border-thickness} * 2));
 		text-align: center;
 
-		padding-left: calc(#{$height} * 2.5);
+		padding-left: calc(#{$height} * 3);
 
 		cursor: pointer;
 
