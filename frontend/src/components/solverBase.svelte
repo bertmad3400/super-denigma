@@ -82,6 +82,86 @@ h1.page-title {
 		font-size: 14px;
 	}
 
+	$height: 2ex;
+	$border-thickness: 2px;
+	$margin: calc(#{$height} * (0.15 / 2) + #{$border-thickness});
+
+	:global(input.switch) {
+		display: none;
+
+		&:disabled + :global(label) {
+			cursor: not-allowed;
+			opacity: 0.6;
+		}
+		&:checked + :global(label):before {
+			background: red;
+			border-color: red;
+		}
+
+		&:checked + :global(label):after {
+			left: calc((#{$height} * 2) - #{$margin} + #{$border-thickness} * 2);
+			transform: translateX(-100%);
+		}
+	}
+
+	:global(label.switch) {
+		font-weight: 100;
+		font-size: 0.8125rem;
+		font-family: sans;
+
+		position: relative;
+		display: inline-block;
+
+		height: $height;
+
+		line-height: calc(#{$height} + (#{$border-thickness} * 2));
+		text-align: center;
+
+		padding-left: calc(#{$height} * 2.5);
+
+		cursor: pointer;
+
+		&:before {
+			content: "";
+
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			width: calc(#{$height} * 2);
+			height: $height;
+
+			border-radius: $height;
+			border: $border-thickness solid blue;
+
+			background: hsl(0, 0%, 97%);
+
+			transition: background 0.3s;
+		}
+
+		&:after {
+			content: "";
+
+			display: block;
+			position: absolute;
+			top: $margin;
+			left: $margin;
+
+			border-radius: calc(3ex * 0.85);
+
+			background: black;
+
+			height: calc(#{$height} * 0.85);
+			width: calc(#{$height} * 0.85);
+			transition: left 0.3s, transform 0.3s, width 0.2s;
+
+		}
+
+		&:active:after {
+			width: calc(#{$height} * 1.2);
+		}
+	}
 
 }
 
