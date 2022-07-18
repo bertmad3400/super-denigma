@@ -3,8 +3,10 @@
 	import SubstitutionSolver from "./components/solvers/substitution.svelte"
 	import CeaserSolver from "./components/solvers/ceaser.svelte"
 	import BinarySolver from "./components/solvers/binary.svelte"
+	import ImageBasedSolver from "./components/solvers/imageBased.svelte"
 
 	const solvers = {
+		"Image based ciphers" : ImageBasedSolver,
 		"Shift Cipher encryption/decryption" : CeaserSolver,
 		"Morse decode/encode" : MorseSolver,
 		"Mono-alphabetic substitution-cipher" : SubstitutionSolver,
@@ -17,9 +19,10 @@
 <main>
 	<div class="boxedArea">
 		<select name="solverChooser" id="solverChooser" bind:value={currentSolver}>
-		{#each Object.keys(solvers) as solver}
-			<option value="{solver}">{solver}</option>
-		{/each}
+			{#each Object.keys(solvers) as solver}
+				<option value="{solver}">{solver}</option>
+			{/each}
+		</select>
 	</div>
 
 	<svelte:component this={solvers[currentSolver]} />
