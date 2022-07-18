@@ -6,7 +6,7 @@
 	let cipherText = ""
 	let imageKind = "dk-frimur"
 
-	$: solutionImageNames = cipherText.split("").map((letter) => {
+	$: solutionImageNames = cipherText.toLowerCase().split("").map((letter) => {
 		if (letter in translateTable[imageKind].translations) {
 			return {"found" : true, "content" : translateTable[imageKind].translations[letter]}
 		} else {
