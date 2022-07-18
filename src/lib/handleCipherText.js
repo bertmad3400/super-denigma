@@ -1,3 +1,42 @@
+export const nrReps = Object.freeze({
+	Binary: 2,
+	Decimal: 10,
+	Hex: 16,
+})
+
+export function textToNumber(cipherText, nrRepType, alphabet = "") {
+	let cipherTextArray = cipherText.split("")
+	let numericRepresentations = []
+
+	if (Boolean(alphabet)) {
+		alphabet = alphabet.split("")
+		cipherTextArray.forEach((cipherPiece) => {
+			let number = alphabet.indexOf(cipherPiece) + 1
+			if (number > 0) {
+				numericRepresentations.push(number)
+			} else {
+				numericRepresentations.push(cipherPiece)
+			}
+		})
+	} else {
+		cipherTextArray.forEach((cipherPiece) => {
+			numericRepresentations.push(cipherPiece.charCodeAt(0))
+		})
+	}
+
+	let finalRepresentation = []
+
+	numericRepresentations.forEach((number) => {
+		if (!isNaN(parseFloat(number)) && !isNaN(number - 0)) {
+			finalRepresentation.push(number.toString(nrReps[nrRepType]))
+		} else {
+			finalRepresentation.push(number)
+		}
+	})
+
+	return finalRepresentation
+}
+
 export const morseToLetter = {
 	'.-':     'a',
 	'-...':   'b',

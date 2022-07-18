@@ -146,6 +146,69 @@
 		}
 	}
 
+	:global(label.radio) {
+		display: block;
+		cursor: pointer;
+		user-select:none;
+
+		text-align: left;
+		min-width: max-content;
+
+		padding: 1rem;
+
+		transition: background-color 0.2s ease-in-out;
+
+		&:hover {
+			background-color: hsl(0, 0%, 97%);
+		}
+
+		&+:global(.radio){
+			margin-top: -0.4rem;
+		}
+
+		:global(input.radio) {
+			display: none;
+
+			&+:global(span.radio) {
+				display: inline-block;
+				position: relative;
+				padding-left: 2.4rem;
+				&:before{
+					content: '';
+					display: block;
+					position: absolute;
+					top: 4px;
+					left: 0px;
+					border-radius: 50%;
+					margin-right: 5px;
+					width: 18px;
+					height: 18px;
+					border: 1px solid hsl(0, 0%, 80%);
+				}
+				&:after{
+					content: '';
+					display: block;
+					width: 12px;
+					height: 12px;
+					background: red;
+					position: absolute;
+					border-radius: 50%;
+					top: 8px;
+					left: 4px;
+					opacity: 0;
+					transform: scale(0,0);
+					transition: all .2s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+				}
+
+			}
+			&:checked+:global(span.radio):after{
+				opacity: 1;
+				transform: scale(1,1);
+			}
+		}
+	}
+
+
 }
 
 #solutionArea {

@@ -2,11 +2,13 @@
 	import MorseSolver from "./components/solvers/morse.svelte"
 	import SubstitutionSolver from "./components/solvers/substitution.svelte"
 	import CeaserSolver from "./components/solvers/ceaser.svelte"
+	import BinarySolver from "./components/solvers/binary.svelte"
 
 	const solvers = {
 		"Shift Cipher encryption/decryption" : CeaserSolver,
 		"Morse decode/encode" : MorseSolver,
 		"Mono-alphabetic substitution-cipher" : SubstitutionSolver,
+		"Numeric letter representation" : BinarySolver,
 	}
 
 	let currentSolver
