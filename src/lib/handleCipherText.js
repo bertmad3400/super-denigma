@@ -4,6 +4,27 @@ export const nrReps = Object.freeze({
 	Hex: 16,
 })
 
+export function numberToText(cipherText, nrRepType, alphabet = "") {
+	return cipherText.map(nr => {
+		let parsedNr = parseInt(nr, nrReps[nrRepType])
+
+		if (!isNaN(parsedNr)) {
+			if (Boolean(alphabet)) {
+				if (parsedNr <= alphabet.length) {
+					return alphabet[parsedNr - 1]
+				} else {
+					return parsedNr
+				}
+			} else {
+				return String.fromCharCode(parsedNr)
+			}
+		} else {
+			return nr
+		}
+	})
+
+}
+
 export function textToNumber(cipherText, nrRepType, alphabet = "") {
 	let cipherTextArray = cipherText.split("")
 	let numericRepresentations = []

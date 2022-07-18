@@ -1,6 +1,6 @@
 <script>
 	import SolverBase from "../solverBase.svelte"
-	import { nrReps, textToNumber } from "../../lib/handleCipherText.js"
+	import { nrReps, textToNumber, numberToText } from "../../lib/handleCipherText.js"
 
 	let delimiter = " "
 	let cipherText = ""
@@ -8,8 +8,14 @@
 	let currentNrRep = "Binary"
 
 	let usingAscii = true
+	let decode = true
 
-	$: solution = textToNumber(cipherText, currentNrRep, usingAscii ? false : alphabet)
+	$: solution = decode ? numberToText(cipherText.split(delimiter), currentNrRep, usingAscii ? false : alphabet) : textToNumber(cipherText, currentNrRep, usingAscii ? false : alphabet)
+
+	function changeDecodeEncode(e) {
+		cipherText = solution.join(decode ? "" : delimiter)
+		decode = e.target.checked
+	}
 </script> 
 
 <SolverBase>
@@ -36,9 +42,12 @@
 		<input type="text" name="delimiter" id="delimiter" bind:value="{delimiter}">
 		<label for="alphabet">The cipher text to decode.</label>
 		<textarea placeholder="Insert cipher text here" id="textbox" name="cipherText" bind:value={cipherText}></textarea>
+
+		<input id="decode" class="switch" type="checkbox" on:change={changeDecodeEncode} checked={decode}>
+		<label class="switch" for="decode">{ decode ? "Decode from numbers" : "Encode to numbers"}</label>
 	</form>
 	
-	<h1 slot="solution">{solution.join(delimiter)}</h1>
+	<h1 slot="solution">{solution.join(decode ? "" : delimiter)}</h1>
 </SolverBase>
 
 <style lang="scss">
