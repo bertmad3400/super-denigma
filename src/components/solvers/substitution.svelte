@@ -1,11 +1,10 @@
 <script>
 	import SolverBase from "../solverBase.svelte"
-	
-	import { writable } from "svelte/store"
+
 	import { substitute as substitutionDecode } from "../../lib/handleCipherText.js"
 
 	let cipherText = ""
-	let alphabet = "abcdefghifjklmnopqrstuvwxyzæøå"
+	let alphabet = "abcdefghijklmnopqrstuvwxyzæøå"
 	let substitutionTable = {}
 
 	$: solutions = substitutionDecode(cipherText, substitutionTable)
@@ -20,28 +19,71 @@
 		substitutionTable = newTable
 	}
 
-</script> 
+	let lastKey = {	"lastKey" : "",
+					"accessTime" : new Date(),
+
+					get key() {
+						if (!Boolean(this.lastKey) || new Date() - this.accessTime > 2000) {
+							this.lastKey = ""
+							return ""
+						} else {
+							return this.lastKey
+						}
+					},
+
+					set key(key) {
+						this.accessTime = new Date()
+						this.lastKey = key
+					}
+	}
+
+	function handleKeypress(e) {
+		let key = e.key.toLowerCase()
+
+		if (key === " " && lastKey.key === " ") {
+			clearSubTable()
+			lastKey.key = ""
+		} else if (alphabet.includes(key) || key === " ") {
+			if (Boolean(lastKey.key) && alphabet.includes(lastKey.key)) {
+				if (key === " ") {
+					substitutionTable[lastKey.key] = ""
+				} else {
+					substitutionTable[lastKey.key] = key
+				}
+
+				lastKey.key = ""
+			} else {
+				lastKey.key = key
+			}
+		} else {
+			lastKey.key = ""
+		}
+	}
+
+</script>
+
+<svelte:window on:keydown={handleKeypress}/>
 
 <SolverBase>
 	<form id="inputForm" slot="input">
 		<label for="alphabet">The alphabet with substitutions.</label>
-		<input type="text" name="alphabet" placeholder="abc..." bind:value="{alphabet}">
+		<input type="text" name="alphabet" placeholder="abc..." bind:value="{alphabet}" on:keydown|stopPropagation>
 		<label for="alphabet">The cipher text to decode.</label>
-		<textarea placeholder="Insert cipher text here" id="textbox" name="cipherText" bind:value={cipherText}></textarea>
-		
+		<textarea placeholder="Insert cipher text here" id="textbox" name="cipherText" bind:value={cipherText} on:keydown|stopPropagation></textarea>
+
 		<h1>Substitution Table</h1>
 
 		<div id="subTable">
 			{#each alphabet.split("") as letter}
 				<label for="letter-{letter}">
-					{letter}<input type="text" id="letter-{letter}" bind:value="{substitutionTable[letter]}">
+					{letter}: <input type="text" id="letter-{letter}" bind:value="{substitutionTable[letter]}" on:keydown|stopPropagation>
 				</label>
 			{/each}
 		</div>
 
 		<input type="button" value="Clear" on:click="{clearSubTable}">
 	</form>
-	
+
 	<svelte:fragment slot="solution">
 		<h1>
 			{#each solutions as {modified, char, ID} (ID) }
@@ -55,6 +97,15 @@
 #subTable {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
+
+	:global(label) {
+		display: flex;
+		justify-content: space-evenly;
+
+		:global(input) {
+			width: 60%;
+		}
+	}
 }
 
 span {
