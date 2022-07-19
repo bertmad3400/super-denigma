@@ -1,19 +1,28 @@
 <script>
+	import Title from "./generic/collapsibleTitle.svelte"
+
 </script>
 
-	<div class="boxedArea" id="inputArea">
-		<slot name="input">
-		</slot>
+	<div class="boxedArea inputArea" >
+		<Title title="Input" open="{true}">
+			<slot name="input">
+			</slot>
+		</Title>
 	</div>
 
 	<div class="boxedArea" id="solutionArea">
-		<slot name="solution">
-		</slot>
+		<Title title="Solution" open="{true}">
+			<slot name="solution">
+			</slot>
+		</Title>
+	</div>
+
 	</div>
 
 <style lang="scss">
 :global(.boxedArea) {
 	display:flex;
+	flex-direction: column;
 	box-sizing: border-box;
 
 	justify-content: center;
@@ -24,8 +33,9 @@
 	transition: box-shadow 0.15s ease-out;
 
 	width: calc(max(50vw, 60ch));
-	margin: 20px auto;
-	padding: 20px;
+	margin: 3rem auto 3rem auto;
+
+	padding: 3rem;
 
 	&:hover {
 		box-shadow: 0 0 5px 0 #3263cd;
