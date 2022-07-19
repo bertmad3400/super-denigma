@@ -64,7 +64,7 @@
 
 <svelte:window on:keydown={handleKeypress}/>
 
-<SolverBase>
+<SolverBase {cipherText} clearText={solutions.map(solution => solution.char).join("")}>
 	<form id="inputForm" slot="input">
 		<label for="alphabet">The alphabet with substitutions.</label>
 		<input type="text" name="alphabet" placeholder="abc..." bind:value="{alphabet}" on:keydown|stopPropagation>

@@ -1,4 +1,7 @@
 <script>
+	export let cipherText = ""
+	export let clearText = ""
+
 	import Title from "./generic/collapsibleTitle.svelte"
 
 </script>

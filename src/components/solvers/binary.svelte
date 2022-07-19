@@ -10,15 +10,15 @@
 	let usingAscii = true
 	let decode = true
 
-	$: solution = decode ? numberToText(cipherText.split(delimiter), currentNrRep, usingAscii ? false : alphabet) : textToNumber(cipherText, currentNrRep, usingAscii ? false : alphabet)
+	$: solution = decode ? numberToText(cipherText.split(delimiter), currentNrRep, usingAscii ? false : alphabet).join("") : textToNumber(cipherText, currentNrRep, usingAscii ? false : alphabet).join(delimiter)
 
 	function changeDecodeEncode(e) {
-		cipherText = solution.join(decode ? "" : delimiter)
+		cipherText = solution
 		decode = e.target.checked
 	}
 </script> 
 
-<SolverBase>
+<SolverBase {cipherText} clearText={solution}>
 	<form id="inputForm" slot="input">
 		<label for="alphabet">The alphabet to loop through.</label>
 		<input type="text" name="alphabet" id="alphabet" placeholder="abc..." bind:value="{alphabet}" disabled={usingAscii}>
@@ -47,7 +47,7 @@
 		<label class="switch" for="decode">{ decode ? "Decode from numbers" : "Encode to numbers"}</label>
 	</form>
 	
-	<h1 slot="solution">{solution.join(decode ? "" : delimiter)}</h1>
+	<h1 slot="solution">{solution}</h1>
 </SolverBase>
 
 <style lang="scss">

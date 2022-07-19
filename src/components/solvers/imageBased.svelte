@@ -16,7 +16,7 @@
 
 </script> 
 
-<SolverBase>
+<SolverBase {cipherText}>
 	<form id="inputForm" slot="input">
 		<select name="imageKindChooser" id="imageKindChooser" bind:value={imageKind}>
 			{#each Object.keys(translateOptions) as option}

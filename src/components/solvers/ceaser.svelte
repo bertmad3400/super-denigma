@@ -20,7 +20,7 @@
 
 </script> 
 
-<SolverBase>
+<SolverBase {cipherText} clearText={Array.isArray(solution) ? "" : solution}>
 	<form id="inputForm" slot="input">
 		<label for="shiftCount">The number of times to shift the cipher text.</label>
 		<input type="number" name="shiftCount" bind:value="{shiftCount}" disabled="{wholeAlfabet}">
