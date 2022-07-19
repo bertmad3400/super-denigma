@@ -2,7 +2,14 @@
 	export let cipherText = ""
 	export let clearText = ""
 
+	let alphabet = "abcdefghijklmnopqrstuvwxyzæøå"
+
+	$: cipherTextSummary = summarizeCharCount(countChars(cipherText, alphabet))
+	$: clearTextSummary = summarizeCharCount(countChars(clearText, alphabet))
+
 	import Title from "./generic/collapsibleTitle.svelte"
+	import Chart from "./generic/chart.svelte"
+	import { countChars, summarizeCharCount } from "../lib/statistics.js"
 
 </script>
 
@@ -20,9 +27,34 @@
 		</Title>
 	</div>
 
+	<div class="boxedArea inputArea" id="statisticsArea">
+		<Title title="Statistics">
+			<label for="alphabet">The alphabet used for counting characthers.</label>
+			<input type="text" name="alphabet" placeholder="abc..." bind:value="{alphabet}" on:keydown|stopPropagation>
+
+			<hr>
+
+			<h4>Cipher-text summary</h4>
+			<Chart data={cipherTextSummary}/>
+
+			{#if Object.keys(clearTextSummary).length > 0}
+				<h4>Clear-text summary</h4>
+				<Chart data={clearTextSummary}/>
+			{/if}
+		</Title>
 	</div>
 
 <style lang="scss">
+h4 {
+	margin: 1.5rem;
+}
+
+
+hr {
+	width: 100%;
+	margin: 2rem 0;
+}
+
 :global(.boxedArea) {
 	display:flex;
 	flex-direction: column;
@@ -47,8 +79,7 @@
 
 }
 
-#inputArea {
-	padding: 3rem;
+.inputArea {
 
 	:global(form) {
 		width: 100%;
