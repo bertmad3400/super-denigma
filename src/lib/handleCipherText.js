@@ -163,7 +163,6 @@ export function ceaserHandler(cipherText, shiftCount, alphabets, wholeAlfabet) {
 	} else {
 		result = cipherText
 		for (const alphabet of alphabets) {
-			console.log(alphabet)
 			result = shiftText(result, shiftCount, alphabet)
 		}
 	}
