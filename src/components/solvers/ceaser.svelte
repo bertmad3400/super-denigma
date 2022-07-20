@@ -6,7 +6,7 @@
 
 	let cipherText = ""
 	let shiftCount = 3
-	let alphabets = ["abcdefghifjklmnopqrstuvwxyzæøå"]
+	let alphabets = ["abcdefghijklmnopqrstuvwxyzæøå"]
 	let wholeAlfabet = false
 
 	async function handleCheckbox(e) {
