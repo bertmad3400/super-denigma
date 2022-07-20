@@ -1,5 +1,5 @@
 export const countChars = function (str, alphabet = false) {
-	return [...str].reduce((total, letter) => {
+	return [...str.toLowerCase()].reduce((total, letter) => {
 		if (!Boolean(alphabet) || alphabet.includes(letter)) {
 			total["total"] = total["total"] + 1
 			if (!total[letter]) {
@@ -21,5 +21,5 @@ export const countChars = function (str, alphabet = false) {
 
 
 export const summarizeCharCount = charCounts => {
-	return Object.fromEntries(Object.entries(charCounts).filter(([char, count]) => char != "total").map(([char, count]) => [char, (count / charCounts["total"]) * 100 ]))
+	return Object.fromEntries(Object.entries(charCounts).filter(([char, count]) => char != "total").map(([char, count]) => [char, (count / charCounts["total"]) * 100 ]).sort())
 }
