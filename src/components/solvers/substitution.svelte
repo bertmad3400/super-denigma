@@ -1,14 +1,14 @@
 <script>
 	import SolverBase from "../solverBase.svelte"
 
-	import { substitute as substitutionDecode } from "../../lib/substitution.js"
+	import { substitute as substitutionDecode, createRandomTable } from "../../lib/substitution.js"
 	import { danishAlphabet } from "../../lib/shared.js"
 
 	let cipherText = ""
 	let alphabet = danishAlphabet
 	let substitutionTable = {}
 
-	$: solutions = substitutionDecode(cipherText, substitutionTable)
+	$: solutions = substitutionDecode(substitutionTable, cipherText)
 
 	function clearSubTable() {
 		const newTable = {}
@@ -18,6 +18,10 @@
 		}
 
 		substitutionTable = newTable
+	}
+
+	function randomizeSubTable() {
+		substitutionTable = createRandomTable(alphabet)
 	}
 
 	let lastKey = {	"lastKey" : "",
@@ -82,7 +86,10 @@
 			{/each}
 		</div>
 
-		<input type="button" value="Clear" on:click="{clearSubTable}">
+		<div class="multipleInputs">
+			<input type="button" value="Clear" on:click="{clearSubTable}">
+			<input type="button" value="Shuffle" on:click="{randomizeSubTable}">
+		</div>
 	</form>
 
 	<svelte:fragment slot="solution">
@@ -107,6 +114,12 @@
 			width: 60%;
 		}
 	}
+}
+
+div.multipleInputs {
+	width: 100%;
+	display: flex;
+	gap: 2rem;
 }
 
 span {

@@ -81,33 +81,6 @@ export function handleMorse(cipherText, alphabet, prevDelim = "/", newDelim = ""
 	return solution
 }
 
-export function substitute(cipherText, substitutionTable) {
-	const result = []
-
-	let ID = 0
-	for (let char of cipherText) {
-		let clearChar
-		let modified
-
-		const lowerChar = char.toLowerCase()
-
-		if (lowerChar in substitutionTable && Boolean(substitutionTable[lowerChar])) {
-			clearChar = substitutionTable[lowerChar]
-			if (lowerChar !== char) {
-				clearChar = clearChar.toUpperCase()
-			}
-
-			modified = true
-		} else {
-			clearChar = char
-			modified = false
-		}
-		result.push({"modified" : modified, "clearChar" : clearChar, "oldChar" : char, "ID" : ID})
-		ID++
-	}
-	return result
-}
-
 export function ceaserHandler(cipherText, shiftCount, alphabets, wholeAlfabet) {
 	let result
 	if (wholeAlfabet) {
