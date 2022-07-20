@@ -146,7 +146,7 @@ export function substitute(cipherText, substitutionTable) {
 			clearChar = char
 			modified = false
 		}
-		result.push({"modified" : modified, "char" : clearChar, "ID" : ID})
+		result.push({"modified" : modified, "clearChar" : clearChar, "oldChar" : char, "ID" : ID})
 		ID++
 	}
 	return result
