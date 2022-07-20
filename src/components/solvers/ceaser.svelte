@@ -3,10 +3,11 @@
 	
 	import { writable } from "svelte/store"
 	import { ceaserHandler as ceaserDecode } from "../../lib/handleCipherText.js"
+	import { danishAlphabet } from "../../lib/shared.js"
 
 	let cipherText = ""
 	let shiftCount = 3
-	let alphabets = ["abcdefghijklmnopqrstuvwxyzæøå"]
+	let alphabets = [danishAlphabet]
 	let wholeAlfabet = false
 
 	async function handleCheckbox(e) {

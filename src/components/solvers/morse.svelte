@@ -1,7 +1,8 @@
 <script>
 	import SolverBase from "../solverBase.svelte"
 	
-	import { handleMorse, morseToLetter, letterToMorse } from "../../lib/handleCipherText.js"
+	import { handleMorse } from "../../lib/handleCipherText.js"
+	import { morseToLetter, letterToMorse} from "../../lib/shared.js"
 
 	let dotType = "."
 	let dashType = "-"

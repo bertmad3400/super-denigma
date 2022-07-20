@@ -1,10 +1,11 @@
 <script>
 	import SolverBase from "../solverBase.svelte"
 
-	import { substitute as substitutionDecode } from "../../lib/handleCipherText.js"
+	import { substitute as substitutionDecode } from "../../lib/substitution.js"
+	import { danishAlphabet } from "../../lib/shared.js"
 
 	let cipherText = ""
-	let alphabet = "abcdefghijklmnopqrstuvwxyzæøå"
+	let alphabet = danishAlphabet
 	let substitutionTable = {}
 
 	$: solutions = substitutionDecode(cipherText, substitutionTable)

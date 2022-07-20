@@ -1,10 +1,11 @@
 <script>
 	import SolverBase from "../solverBase.svelte"
 	import { nrReps, textToNumber, numberToText } from "../../lib/handleCipherText.js"
+	import { danishAlphabet } from "../../lib/shared.js"
 
 	let delimiter = " "
 	let cipherText = ""
-	let alphabet = "abcdefghijklmnopqrstuvwxyzæøå"
+	let alphabet = danishAlphabet
 	let currentNrRep = "Binary"
 
 	let usingAscii = true
