@@ -1,7 +1,7 @@
 <script>
 	import SolverBase from "../solverBase.svelte"
 
-	import { substitute as substitutionDecode, createRandomTable } from "../../lib/substitution.js"
+	import { substitute as substitutionDecode, subLangs, createTableFromTemplate, createRandomTable } from "../../lib/substitution.js"
 	import { danishAlphabet } from "../../lib/shared.js"
 
 	let cipherText = ""
@@ -22,6 +22,13 @@
 
 	function randomizeSubTable() {
 		substitutionTable = createRandomTable(alphabet)
+	}
+
+	function selectTemplate(e) {
+		let subLangTemplate = subLangs[e.target.value]
+		alphabet = subLangTemplate.alphabet
+		substitutionTable = createTableFromTemplate(cipherText, subLangTemplate)
+
 	}
 
 	let lastKey = {	"lastKey" : "",
@@ -90,6 +97,13 @@
 			<input type="button" value="Clear" on:click="{clearSubTable}">
 			<input type="button" value="Shuffle" on:click="{randomizeSubTable}">
 		</div>
+
+		<select name="templates" id="templates" on:change={selectTemplate}>
+			<option selected disabled>Apply template</option>
+			{#each Object.keys(subLangs) as subLang}
+				<option value="{subLang}">{subLang} Template</option>
+			{/each}
+		</select>
 	</form>
 
 	<svelte:fragment slot="solution">
