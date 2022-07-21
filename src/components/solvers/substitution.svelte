@@ -11,6 +11,22 @@
 
 	$: solutions = substitutionDecode(substitutionTable, cipherText)
 
+	let clearWord = ""
+	let cipherWord = ""
+
+	$: {
+		clearSubTable()
+
+		clearWord = clearWord.toLowerCase()
+		cipherWord = cipherWord.toLowerCase()
+
+		if (clearWord && cipherWord && clearWord.length === cipherWord.length) {
+			for (let i = 0; i < clearWord.length; i++) {
+				substitutionTable[cipherWord[i]] = clearWord[i]
+			}
+		}
+	}
+
 	function clearSubTable() {
 		const newTable = {}
 
@@ -95,6 +111,16 @@
 		</div>
 
 		<div class="multipleInputs">
+			<label for="cipherWord">Part of ciphertext.
+				<input type="text" name="cipherWord" id="cipherWord" placeholder="Ciper-word" bind:value="{cipherWord}" on:keydown|stopPropagation>
+			</label>
+
+			<label for="clearWord">Corresponding cleartext.
+				<input type="text" name="clearWord" id="clearWord" placeholder="Clear-word" bind:value="{clearWord}" on:keydown|stopPropagation>
+			</label>
+		</div>
+
+		<div class="multipleInputs">
 			<input type="button" value="Clear" on:click="{clearSubTable}">
 			<input type="button" value="Shuffle" on:click="{randomizeSubTable}">
 		</div>
@@ -140,6 +166,19 @@ div.multipleInputs {
 	width: 100%;
 	display: flex;
 	gap: 2rem;
+
+	 * {
+		flex-grow: 1;
+		flex-basis: 0;
+	}
+
+	 label {
+		text-align: center;
+
+		input {
+			margin-top: 1rem;
+		}
+	 }
 }
 
 span {
