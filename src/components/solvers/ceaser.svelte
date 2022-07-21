@@ -1,8 +1,7 @@
 <script>
 	import SolverBase from "../solverBase.svelte"
 	
-	import { writable } from "svelte/store"
-	import { ceaserHandler as ceaserDecode } from "../../lib/handleCipherText.js"
+	import { ceaserHandler as ceaserDecode } from "../../lib/shiftCiphers.js"
 	import { danishAlphabet } from "../../lib/shared.js"
 
 	let cipherText = ""

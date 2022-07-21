@@ -4,8 +4,10 @@
 	import CeaserSolver from "./components/solvers/ceaser.svelte"
 	import BinarySolver from "./components/solvers/binary.svelte"
 	import ImageBasedSolver from "./components/solvers/imageBased.svelte"
+	import VigenereSolver from "./components/solvers/vigenere.svelte"
 
 	const solvers = {
+		"Vigenere Cipher" : VigenereSolver,
 		"Image based ciphers" : ImageBasedSolver,
 		"Shift Cipher encryption/decryption" : CeaserSolver,
 		"Morse decode/encode" : MorseSolver,
