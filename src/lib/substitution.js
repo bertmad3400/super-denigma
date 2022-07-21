@@ -28,8 +28,15 @@ export function createRandomTable(alphabet) {
 	return createSubTableFromArrays(alphabetList, shuffledAlphabetList)
 }
 
-export function createTableFromTemplate(cipherText, subLang) {
+export function createTableFromTemplate(cipherText, subLang, microShuffle = false) {
 	let cipherCharCount = summarizeCharCount(countChars(cipherText, subLang.alphabet))
+
+	if (microShuffle) {
+		for (const [key, value] of Object.entries(cipherCharCount)) {
+			cipherCharCount[key] = value + (value * (Math.random() < 0.5 ? 0.1 : -0.1))
+		}
+	}
+
 	let sortedCipherChars = sortBasedOnFreq(cipherCharCount)
 
 	return createSubTableFromArrays(sortedCipherChars, subLang.tableTemplate)

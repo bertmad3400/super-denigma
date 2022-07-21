@@ -7,6 +7,7 @@
 	let cipherText = ""
 	let alphabet = danishAlphabet
 	let substitutionTable = {}
+	let currentTemplate = ""
 
 	$: solutions = substitutionDecode(substitutionTable, cipherText)
 
@@ -18,16 +19,16 @@
 		}
 
 		substitutionTable = newTable
+		currentTemplate = ""
 	}
 
 	function randomizeSubTable() {
 		substitutionTable = createRandomTable(alphabet)
 	}
 
-	function selectTemplate(e) {
-		let subLangTemplate = subLangs[e.target.value]
-		alphabet = subLangTemplate.alphabet
-		substitutionTable = createTableFromTemplate(cipherText, subLangTemplate)
+	function selectTemplate(microShuffle = false) {
+		alphabet = subLangs[currentTemplate].alphabet
+		substitutionTable = createTableFromTemplate(cipherText, subLangs[currentTemplate], microShuffle)
 
 	}
 
@@ -98,8 +99,13 @@
 			<input type="button" value="Shuffle" on:click="{randomizeSubTable}">
 		</div>
 
-		<select name="templates" id="templates" on:change={selectTemplate}>
-			<option selected disabled>Apply template</option>
+		<div class="multipleInputs">
+			<input type="button" value="Reset To Template" on:click="{() => selectTemplate()}" disabled={!currentTemplate}>
+			<input type="button" value="Micro Shuffle" on:click="{() => selectTemplate(true)}" disabled={!currentTemplate}>
+		</div>
+
+		<select name="templates" id="templates" bind:value={currentTemplate} on:change={() => selectTemplate()}>
+			<option value="" selected>Apply template</option>
 			{#each Object.keys(subLangs) as subLang}
 				<option value="{subLang}">{subLang} Template</option>
 			{/each}
